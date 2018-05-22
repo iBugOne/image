@@ -12,10 +12,10 @@ set -e
 
 git clone --depth=1 --branch=$BRANCH "https://$GH_TOKEN@github.com/$REMOTE.git" work
 cd work
-rm -rf .git
-git init
 git config user.name "iBug"
 git config user.email "7273074+iBug@users.noreply.github.com"
+git checkout --orphan temp
 git add -A
 git commit -m "Auto squash from Travis CI"
+git branch -M $BRANCH
 git push -f
