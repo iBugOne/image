@@ -8,6 +8,7 @@ if [ -z "$SSH_KEY_E" ]; then
   echo "SSH key not found!" >&2
   exit 1
 fi
+mkdir -p ~/.ssh
 base64 -d <<< "$SSH_KEY_E" | gunzip -c > ~/.ssh/id_rsa
 chmod 400 ~/.ssh/id_rsa
 export SSH_AUTH_SOCK=none GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa"
