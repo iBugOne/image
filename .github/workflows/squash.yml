@@ -1,0 +1,14 @@
+name: squash
+
+on: [push]
+
+jobs:
+  squash:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Run squasher script
+      run: bash updater.sh
+      env:
+        SSH_KEY_E: ${{ secrets.SSH_KEY_E }}

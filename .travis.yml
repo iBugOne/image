@@ -1,9 +1,0 @@
-sudo: false
-language: bash
-
-script:
-  - bash updater.sh
-
-branches:
-  only:
-    - updater

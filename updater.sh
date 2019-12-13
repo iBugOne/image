@@ -14,13 +14,12 @@ export SSH_AUTH_SOCK=none GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -i ~/
 
 set -e
 
-git clone --depth=1 --branch=$BRANCH "git@github.com:$REMOTE.git" work
+git clone --depth=1 --branch="$BRANCH" "git@github.com:$REMOTE.git" work
 cd work
-git config user.name "iBug"
-git config user.email "git@ibugone.com"
 git checkout --orphan temp
 git add -A
-git commit -m "Auto squash from Travis CI"
-git branch -M $BRANCH
-git push -f
-git push -f git@git.dev.tencent.com:iBugOne/image.git master || true
+git -c user.name=iBug -c user.email=git@ibugone.com \
+  commit -m "Auto squash from GitHub Actions"
+git branch -M "$BRANCH"
+git push origin +HEAD:master
+git push git@git.dev.tencent.com:iBugOne/image.git +HEAD:master || true
