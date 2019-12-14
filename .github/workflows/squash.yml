@@ -2,7 +2,9 @@ name: squash
 
 on:
   push:
-    branches: [master, updater]
+    branches:
+      - master
+      - updater
   schedule:
     - cron: '0 0 * * *'
 
